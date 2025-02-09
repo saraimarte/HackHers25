@@ -32,7 +32,7 @@ function App() {
       console.log("Something went wrong.");
     }
   }
-
+m
   //ADD TASK
   async function addTask(){
     const task = prompt('Add Task...');
@@ -62,7 +62,6 @@ function App() {
 
       <TaskCard task = "task" category = "HW" priority= "High" status = "good" dueDate = "date" notes = "notes"/>
   </div>);
-
  
 }
 export default App
