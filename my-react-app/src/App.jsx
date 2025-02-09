@@ -10,19 +10,31 @@ export function SiAddCircleLine(props) {
 
 function App() {
   const PORT = 5000;
+
+  //GET TASK
   async function onClick(){
+
+    const [tasks, setTasks] = useState([]);
+
+    const container = document.getElementById("container");
 
     try{
       let response = await fetch(`http://localhost:${PORT}/api/tasks`);
       let data = await response.json();
       console.log(JSON.stringify(data));
+        
+      data.map((task) => {
+        container.appendChild(<TaskCard task = {task.text} category = "HW" priority= "High" status = "good" dueDate = "date" notes = "notes"/>);
+        console.log(task.text);
+      })
+
     } catch(error){
       console.log("Something went wrong.");
     }
   }
 
+  //ADD TASK
   async function addTask(){
-
     const task = prompt('Add Task...');
 
     try{
@@ -33,13 +45,10 @@ function App() {
         },
         body: JSON.stringify({text: task})
       });
+
+     
       let data = await response.json();
       console.log(data); 
-
-      data.map((task) => {
-        <div>{task.text}</div>
-      })
-
     } catch(error){
       console.log("Something went wrong.");
     }
